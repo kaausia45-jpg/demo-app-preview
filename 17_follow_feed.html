@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><title>Follow Feed</title><link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 기본 브라우저 스타일 초기화 및 앱 UI 기반 설정 */
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #fff;
+            color: #1c1c1e;
+        }
+
+        .main-content {
+            padding: 0 16px;
+        }
+
+        /* 피드 아이템을 앱의 리스트 항목처럼 스타일링 */
+        .follow-feed-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0; /* 각 아이템을 구분하는 연한 선 */
+            text-decoration: none; /* 링크 밑줄 제거 */
+            color: inherit; /* 링크 색상 상속받아 파란색 제거 */
+        }
+
+        .follow-feed-item:last-child {
+            border-bottom: none;
+        }
+
+        /* 프로필 이미지를 원형으로 처리 */
+        .profile-thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+            flex-shrink: 0; /* 이미지가 찌그러지지 않도록 설정 */
+        }
+
+        .feed-item-content {
+            flex-grow: 1;
+        }
+
+        /* 정보 위계 설정: 사용자 이름 강조 */
+        .feed-item-content h4 {
+            margin: 0;
+            font-size: 1rem; /* 16px */
+            font-weight: 600;
+        }
+
+        /* 정보 위계 설정: 활동 내용 */
+        .feed-item-content .feed-item-description {
+            margin: 4px 0 0;
+            font-size: 0.9rem; /* 14px */
+            color: #3c3c43;
+        }
+
+        /* 정보 위계 설정: 시간 정보는 연하게 */
+        .feed-item-description .time-tag {
+            color: #8e8e93;
+        }
+    </style></head>
+<body>
+    <div class="app-container">
+        <header class="top-bar-simple"><a href="04_home_base.html">←</a><h3>팔로우 업데이트</h3></header>
+        <main class="main-content">
+            <a href="14_trip_schedule_view.html" class="follow-feed-item">
+                <img src="assets/images/profile_2.png" alt="사용자 프로필 썸네일" class="profile-thumb">
+                <div class="feed-item-content">
+                    <h4>User Name 1</h4>
+                    <p class="feed-item-description">홍대 술집 투어 <span class="time-tag">· 어제</span></p>
+                </div>
+            </a>
+            <a href="14_trip_schedule_view.html" class="follow-feed-item">
+                <img src="assets/images/profile_3.png" alt="사용자 프로필 썸네일" class="profile-thumb">
+                <div class="feed-item-content">
+                    <h4>User Name 2</h4>
+                    <p class="feed-item-description">강릉 카페 추천 코스 <span class="time-tag">· 2일 전</span></p>
+                </div>
+            </a>
+            <a href="14_trip_schedule_view.html" class="follow-feed-item">
+                <img src="assets/images/profile_4.png" alt="사용자 프로필 썸네일" class="profile-thumb">
+                <div class="feed-item-content">
+                    <h4>User Name 3</h4>
+                    <p class="feed-item-description">부산 1박2일 여행 <span class="time-tag">· 5일 전</span></p>
+                </div>
+            </a>
+        </main>
+    </div>
+</body>
+</html>

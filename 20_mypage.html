@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head><title>My Page</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+     <div class="app-container">
+        <header class="top-bar-simple"><a href="04_home_base.html">←</a><h3>마이페이지</h3></header>
+        <main class="main-content padding-h" style="background-color:#f8f9fa; min-height:100vh; padding-top:20px;">
+            
+            <section class="profile-section">
+                <div class="profile-image" style="display:flex; justify-content:center; align-items:center; font-size:30px;">😊</div>
+                <div class="profile-info">
+                    <h4 class="profile-nickname">김여행</h4>
+                    <p class="profile-bio">여행을 사랑하는 개발자 ✈️</p>
+                </div>
+            </section>
+
+            <div class="settings-list">
+                <div class="settings-item">
+                    <span>언어 설정</span>
+                    <span class="current-value">한국어 ></span>
+                </div>
+                <div class="settings-item">
+                    <span>알림 설정</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="settings-item">
+                    <span>버전 정보</span>
+                    <span class="current-value">v1.0.0 (Demo)</span>
+                </div>
+            </div>
+            
+            <button class="btn-logout" onclick="alert('로그아웃 되었습니다.')">로그아웃</button>
+            
+        </main>
+    </div>
+</body>
+</html>

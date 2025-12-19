@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>Trip Summary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* General Reset & App-like Feel */
+        html {
+            box-sizing: border-box;
+        }
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f5f7; /* Light gray app background */
+            color: #333;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .app-container {
+            max-width: 480px; /* For mobile screen demo */
+            margin: 0 auto;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .top-bar-simple {
+            padding: 16px 20px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .top-bar-simple a {
+            font-size: 28px;
+            line-height: 1;
+            margin-right: 10px;
+            color: #555;
+        }
+
+        /* Main Content & Spacing */
+        .main-content {
+            padding: 0 20px 140px; /* Add bottom padding for fixed buttons */
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 24px;
+        }
+        .day-card {
+            margin-bottom: 32px;
+        }
+        .day-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1a1a1a;
+        }
+
+        /* Schedule Item Cards */
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .schedule-item-card {
+            display: flex;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 12px;
+            border: 1px solid #e9e9e9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .schedule-item-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        .schedule-item-card .icon {
+            font-size: 20px;
+            margin-right: 16px;
+            background-color: #f0f2f5;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        .schedule-item-card .info strong {
+            font-size: 16px;
+            font-weight: 600;
+            color: #222;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .schedule-item-card .tags {
+            font-size: 13px;
+            color: #777;
+        }
+        .schedule-item-card .tags span {
+            margin-right: 8px;
+        }
+
+        /* Bottom Buttons */
+        .bottom-button-group {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            padding: 16px 20px calc(16px + env(safe-area-inset-bottom)); /* iOS safe area */
+            background: linear-gradient(to top, rgba(255,255,255,1) 70%, rgba(255,255,255,0));
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .bottom-button-group a {
+            display: block;
+            text-align: center;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            color: #fff;
+        }
+        .btn-secondary {
+            background-color: #f0f2f5;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="top-bar-simple"><a href="10_travel_input.html">←</a></header>
+        <main class="main-content padding-h">
+            <h2>홍콩 2박3일 제안 일정</h2>
+            <div class="day-card">
+                <h3>Day 1</h3>
+                <div class="schedule-list">
+                    <a href="12_place_detail.html" class="schedule-item-card">
+                        <div class="icon">🍜</div>
+                        <div class="info">
+                            <strong>팀호완</strong>
+                            <div class="tags"><span>#미슐랭</span> <span>#딤섬</span></div>
+                        </div>
+                    </a>
+                    <a href="12_place_detail.html" class="schedule-item-card">
+                        <div class="icon">🖼️</div>
+                        <div class="info">
+                            <strong>M+ 뮤지엄</strong>
+                            <div class="tags"><span>#현대미술</span> <span>#문화생활</span></div>
+                        </div>
+                    </a>
+                    <a href="12_place_detail.html" class="schedule-item-card">
+                        <div class="icon">🌃</div>
+                        <div class="info">
+                            <strong>빅토리아 피크</strong>
+                            <div class="tags"><span>#홍콩야경</span> <span>#필수코스</span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <h3>Day 2</h3>
+                <div class="schedule-list">
+                    <a href="12_place_detail.html" class="schedule-item-card">
+                        <div class="icon">☕</div>
+                        <div class="info">
+                            <strong>%% 아라비카 응커피</strong>
+                            <div class="tags"><span>#인생커피</span> <span>#오션뷰</span></div>
+                        </div>
+                    </a>
+                    <a href="12_place_detail.html" class="schedule-item-card">
+                        <div class="icon">🎢</div>
+                        <div class="info">
+                            <strong>홍콩 디즈니랜드</strong>
+                            <div class="tags"><span>#테마파크</span> <span>#가족여행</span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="day-card">
+                <h3>Day 3</h3>
+                <div class="schedule-list">
+                    <a href="12_place_detail.html" class="schedule-item-card">
+                        <div class="icon">🛍️</div>
+                        <div class="info">
+                            <strong>코즈웨이 베이 쇼핑</strong>
+                            <div class="tags"><span>#쇼핑천국</span> <span>#마지막날</span></div>
+                        </div>
+                    </a>
+                    <a href="12_place_detail.html" class="schedule-item-card">
+                        <div class="icon">✈️</div>
+                        <div class="info">
+                            <strong>홍콩 국제공항</strong>
+                            <div class="tags"><span>#공항</span></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="bottom-button-group">
+                <a href="13_shadow_map.html" class="btn-primary">동선 맵으로 보기</a>
+                <a href="16_add_to_today.html" class="btn-secondary">오늘 일정에 일부만 담기</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

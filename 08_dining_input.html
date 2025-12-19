@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Dining Input</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- Header -->
+    <header class="top-bar-simple">
+        <a href="07_home_category.html" aria-label="뒤로가기">←</a>
+        <h3>맛집 조건 입력</h3>
+    </header>
+
+    <!-- Main -->
+    <main class="main-content dining-input">
+
+        <!-- Input Cards -->
+        <div class="input-card-list">
+
+            <!-- Time -->
+            <section class="input-card">
+                <h4 class="input-title">시간</h4>
+
+                <div class="input-block">
+                    <div class="tag-group">
+                        <button class="tag active">오늘 저녁</button>
+                        <button class="tag">날짜 선택</button>
+                    </div>
+
+                    <select class="select-box">
+                        <option>17:00</option>
+                        <option selected>18:00</option>
+                        <option>19:00</option>
+                        <option>20:00</option>
+                        <option>21:00</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- People -->
+            <section class="input-card">
+                <h4 class="input-title">인원</h4>
+
+                <div class="input-block">
+                    <div class="tag-group">
+                        <button class="tag">1명</button>
+                        <button class="tag active">2명</button>
+                        <button class="tag">3명</button>
+                        <button class="tag">4명 이상</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Area -->
+            <section class="input-card">
+                <h4 class="input-title">지역</h4>
+
+                <div class="input-block">
+                    <div class="tag-group wrap">
+                        <button class="tag active">강남</button>
+                        <button class="tag">홍대</button>
+                        <button class="tag">성수</button>
+                        <button class="tag">명동</button>
+                        <button class="tag">여의도</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Budget -->
+            <section class="input-card">
+                <div class="input-title-row">
+                    <h4 class="input-title">예산 (1인)</h4>
+                    <span class="budget-value"><strong id="budgetValue">5</strong>만원</span>
+                </div>
+
+                <div class="input-block">
+                    <input
+                        type="range"
+                        id="budgetRange"
+                        min="1"
+                        max="10"
+                        value="5"
+                        class="range-slider"
+                    >
+                </div>
+            </section>
+
+            <!-- Mood -->
+            <section class="input-card">
+                <h4 class="input-title">분위기</h4>
+
+                <div class="input-block">
+                    <div class="tag-group wrap">
+                        <button class="tag">조용한</button>
+                        <button class="tag active">캐주얼</button>
+                        <button class="tag">인스타 감성</button>
+                        <button class="tag">프리미엄</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Food Type -->
+            <section class="input-card">
+                <h4 class="input-title">음식 타입</h4>
+
+                <div class="input-block">
+                    <div class="tag-group wrap">
+                        <button class="tag">한식</button>
+                        <button class="tag">일식</button>
+                        <button class="tag">오마카세</button>
+                        <button class="tag active">고기</button>
+                        <button class="tag">디저트</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-bar">
+            <a href="11_recommend_list.html" class="btn-primary full-width">
+                3~5곳 추천받기
+            </a>
+        </div>
+
+    </main>
+</div>
+
+<script>
+const budgetRange = document.getElementById('budgetRange');
+const budgetValue = document.getElementById('budgetValue');
+
+if (budgetRange && budgetValue) {
+    budgetRange.addEventListener('input', (e) => {
+        budgetValue.textContent = e.target.value;
+    });
+}
+</script>
+
+</body>
+</html>
