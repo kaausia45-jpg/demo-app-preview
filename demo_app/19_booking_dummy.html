@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head><title>Booking</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+    <div class="app-container">
+        <header class="top-bar-simple"><a href="12_place_detail.html">←</a><h3>예약하기</h3></header>
+        <main class="main-content padding-h">
+            
+            <div class="booking-card">
+                <h4 class="booking-title">강남 오마카세</h4>
+                <div class="booking-info-row">
+                    <span class="label">날짜</span>
+                    <span class="value">오늘 (12.16)</span>
+                </div>
+                <div class="booking-info-row">
+                    <span class="label">시간</span>
+                    <span class="value">19:00</span>
+                </div>
+                <div class="booking-info-row">
+                    <span class="label">인원</span>
+                    <span class="value">2명</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label style="font-weight:bold; margin-bottom:8px; display:block;">좌석 타입 선택</label>
+                <div class="seat-selection">
+                    <input type="radio" id="seat-bar" name="seat-type" class="seat-radio" checked>
+                    <label for="seat-bar" class="seat-label">바 (Bar)</label>
+
+                    <input type="radio" id="seat-table" name="seat-type" class="seat-radio">
+                    <label for="seat-table" class="seat-label">테이블</label>
+                </div>
+            </div>
+
+            <div class="bottom-cta">
+                <a href="16_schedule_detail.html" onclick="alert('예약 요청이 접수되었습니다! \n(데모: 일정 화면으로 이동합니다)')" class="btn-primary full-width">예약 요청하기</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

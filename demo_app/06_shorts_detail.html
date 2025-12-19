@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Shorts Detail</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* 숏폼 배경 연출 */
+        .short-form-item {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: url('assets/images/short_dummy_1.jpg') center / cover no-repeat;
+        }
+
+        .short-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            filter: saturate(0.85) contrast(0.95);
+        }
+
+        /* 어두운 그라데이션 오버레이 */
+        .short-form-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.35) 0%,
+                rgba(0,0,0,0.15) 40%,
+                rgba(0,0,0,0.6) 100%
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .short-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .short-info h3 {
+            margin: 0 0 6px;
+            font-size: 18px;
+        }
+
+        .short-info p {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-bottom: 10px;
+        }
+
+        .short-actions .icon {
+            width: 26px;
+            margin-bottom: 14px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="top-bar" style="background:transparent; z-index:3;">
+            <a href="05_shorts_feed.html" style="color:white; font-size:24px;">←</a>
+        </header>
+
+        <main class="main-content">
+            <div class="short-form-item">
+                <video
+                    src="assets/videos/short_form_1.mp4"
+                    poster="assets/images/short_dummy_1.jpg"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    class="short-video">
+                </video>
+
+                <div class="short-overlay">
+                    <div class="short-info">
+                        <h3>장소명 (상세)</h3>
+                        <p>#태그1 #태그2</p>
+                        <a href="12_place_detail.html" class="btn-primary" style="padding:10px 14px; font-size:14px;">
+                            장소 상세 보기
+                        </a>
+                    </div>
+                    <div class="short-actions">
+                        <img src="assets/images/icon_heart.svg" class="icon">
+                        <img src="assets/images/icon_comment.svg" class="icon">
+                        <img src="assets/images/icon_share.svg" class="icon">
+                        <img src="assets/images/icon_bookmark.svg" class="icon">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

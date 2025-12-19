@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><title>Travel Input</title><link rel="stylesheet" href="css/style.css"></head>
+<body>
+    <div class="app-container">
+        <header class="top-bar-simple"><a href="07_home_category.html">←</a></header>
+        <main class="main-content padding-h form-layout">
+            <h3>홍콩 2박 3일 일정 만들어 드릴게요.</h3>
+                          <div class="form-group">
+                <label for="travel-dates">출발/도착 날짜 선택</label>
+                <input type="text" class="form-control" id="travel-dates" value="2024.12.24 ~ 2024.12.26" readonly>
+            </div>
+
+             <div class="form-group">
+                <label>여행 스타일</label>
+                <div class="chip-group">
+                    <button type="button" class="chip active">맛집 위주</button>
+                    <button type="button" class="chip">핫플·사진</button>
+                    <button type="button" class="chip">쇼핑</button>
+                    <button type="button" class="chip">힐링</button>
+                </div>
+            </div>
+
+             <div class="form-group">
+                <label for="departure-city">출발 도시</label>
+                <input type="text" class="form-control" id="departure-city" value="서울" disabled>
+            </div>
+
+             <div class="form-group">
+                <label for="arrival-city">도착 도시</label>
+                <input type="text" class="form-control" id="arrival-city" value="홍콩" disabled>
+            </div>
+            <a href="14_trip_summary.html" class="btn-primary full-width">일정 제안 받기</a>
+        </main>
+    </div>
+</body>
+</html>

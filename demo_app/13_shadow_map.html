@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><title>Shadow Map</title><link rel="stylesheet" href="css/style.css">
+<style>
+    .main-content.map-content { position: relative; display: flex; flex-direction: column; height: 100%; }
+    .day-tabs { display: flex; justify-content: center; padding: 10px; background-color: rgba(0,0,0,0.2); flex-shrink: 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .tab-btn { background-color: transparent; border: 1px solid #fff; color: #fff; padding: 8px 16px; margin: 0 5px; border-radius: 15px; cursor: pointer; transition: all 0.2s; }
+    .tab-btn:hover { background-color: rgba(255,255,255,0.1); }
+    .tab-btn.active { background-color: #fff; color: #333; font-weight: bold; }
+    .map-data { position: relative; flex-grow: 1; }
+    .map-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .map-pin-group { cursor: pointer; }
+    .map-tooltip { display: none; pointer-events: none; }
+    .map-tooltip.visible { display: block; }
+    .tooltip-content { background-color: rgba(0,0,0,0.8); color: white; padding: 5px 10px; border-radius: 5px; text-align: center; font-size: 14px; width: max-content; }
+    .course-summary { padding: 15px; background-color: rgba(0,0,0,0.6); text-align: center; color: white; flex-shrink: 0; border-top: 1px solid rgba(255,255,255,0.1); }
+    .course-summary p { margin: 0; font-size: 1rem; }
+</style>
+</head>
+<body class="shadow-map-bg">
+    <div class="app-container transparent-bg">
+        <header class="top-bar-simple">
+            <a href="javascript:history.back()">←</a> <h3>코스 맵</h3>
+        </header>
+        <main class="main-content map-content">
+                         <!-- Day selection tabs -->
+            <div class="day-tabs">
+                <button class="tab-btn active" data-day="1">Day 1</button>
+                <button class="tab-btn" data-day="2">Day 2</button>
+                <button class="tab-btn" data-day="3">Day 3</button>
+            </div>
+
+            <!-- Map Area -->
+            <div id="map-container" class="map-data">
+                <!-- Map SVG will be dynamically generated here -->
+            </div>
+
+            <!-- Course summary at the bottom -->
+            <div class="course-summary">
+                <p id="summary-text">오늘 코스: ① 오마카세 → ② 루프탑바</p>
+            </div>
+        </main>
+    </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const mapContainer = document.getElementById('map-container');
+    const summaryText = document.getElementById('summary-text');
+    
+    const mapData = {
+        '1': {
+            summary: '오늘 코스: ① 오마카세 → ② 루프탑바',
+            path: 'M160,180 C200,240 200,240 240,300',
+            pins: [
+                { id: 1, pos: [160, 180], tooltip: '① 오마카세', tooltipPos: [110, 125] },
+                { id: 2, pos: [240, 300], tooltip: '② 루프탑바', tooltipPos: [190, 245] }
+            ]
+        },
+        '2': {
+            summary: 'Day 2 코스: ① 한강공원 → ② 남산타워',
+            path: 'M100,250 C150,350 250,350 300,450',
+            pins: [
+                { id: 1, pos: [100, 250], tooltip: '① 한강공원', tooltipPos: [50, 195] },
+                { id: 2, pos: [300, 450], tooltip: '② 남산타워', tooltipPos: [250, 395] }
+            ]
+        },
+        '3': {
+            summary: 'Day 3 코스: ① 북촌 한옥마을',
+            path: '',
+            pins: [
+                { id: 1, pos: [200, 250], tooltip: '① 북촌 한옥마을', tooltipPos: [150, 195] }
+            ]
+        }
+    };
+
+    function hideAllTooltips() {
+        const tooltips = mapContainer.querySelectorAll('.map-tooltip');
+        tooltips.forEach(tooltip => tooltip.classList.remove('visible'));
+    }
+
+    function setupTooltipEvents() {
+        const pinGroups = mapContainer.querySelectorAll('.map-pin-group');
+        pinGroups.forEach(pin => {
+            pin.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const tooltipId = pin.getAttribute('data-tooltip-id');
+                const targetTooltip = document.getElementById(tooltipId);
+                
+                const isVisible = targetTooltip.classList.contains('visible');
+                hideAllTooltips();
+                if (!isVisible) {
+                    targetTooltip.classList.add('visible');
+                }
+            });
+        });
+    }
+
+    function renderMap(day) {
+        const data = mapData[day];
+        if (!data) {
+            mapContainer.innerHTML = '<p style="color:white; text-align:center;">해당 날짜의 지도 데이터가 없습니다.</p>';
+            summaryText.textContent = '선택된 날짜의 코스가 없습니다.';
+            return;
+        }
+
+        let pinsHtml = data.pins.map(pin => `
+            <g class="map-pin-group" transform="translate(${pin.pos[0]}, ${pin.pos[1]})" data-tooltip-id="tooltip-${day}-${pin.id}">
+                <circle cx="0" cy="0" r="15" fill="#FF5733"/>
+                <text x="0" y="5" font-size="16" fill="white" text-anchor="middle">${pin.id}</text>
+            </g>
+            <foreignObject x="${pin.tooltipPos[0]}" y="${pin.tooltipPos[1]}" width="120" height="40" class="map-tooltip" id="tooltip-${day}-${pin.id}">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="tooltip-content">${pin.tooltip}</div>
+            </foreignObject>
+        `).join('');
+
+        let pathHtml = '';
+        if (data.path) {
+            pathHtml = `
+                <path id="course-path-${day}" d="${data.path}" stroke="white" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+                <circle r="4" fill="cyan">
+                    <animateMotion dur="5s" repeatCount="indefinite">
+                       <mpath xlink:href="#course-path-${day}"/>
+                    </animateMotion>
+                </circle>
+            `;
+        }
+
+        mapContainer.innerHTML = `
+            <svg class="map-svg" viewBox="0 0 400 600" preserveAspectRatio="xMidYMid meet">
+                ${pathHtml}
+                ${pinsHtml}
+            </svg>
+        `;
+        
+        summaryText.textContent = data.summary;
+        setupTooltipEvents();
+    }
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const day = tab.getAttribute('data-day');
+            renderMap(day);
+        });
+    });
+    
+    document.querySelector('.app-container').addEventListener('click', () => {
+        hideAllTooltips();
+    });
+
+    // Initial render for the default active tab
+    renderMap('1');
+});
+</script>
+</body>
+</html>

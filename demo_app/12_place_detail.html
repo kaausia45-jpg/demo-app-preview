@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>Place Detail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <main class="main-content no-padding">
+
+        <!-- =========================
+             Hero Section (Refactored)
+        ========================== -->
+        <header class="hero-section">
+
+            <!-- Hero Media (이미지/영상/슬라이드용 컨테이너) -->
+            <div class="hero-media" aria-hidden="true"></div>
+
+            <!-- 그라데이션 오버레이 -->
+            <div class="hero-gradient"></div>
+
+            <!-- 텍스트 오버레이 -->
+            <div class="hero-content">
+                <h1 class="place-title">강남 오마카세</h1>
+                <div class="place-meta">
+                    <span class="rating">★ 4.8</span>
+                    <span class="reviews">리뷰 321개</span>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- =========================
+             Content Section
+        ========================== -->
+        <section class="content-body">
+
+            <!-- 기본 정보 카드 -->
+            <div class="info-card">
+
+                <p class="place-description">
+                    신선한 제철 재료로 구성된 프리미엄 오마카세 코스입니다.
+                    조용한 분위기에서 특별한 식사를 즐겨보세요.
+                </p>
+
+                <div class="place-info-list">
+                    <div class="place-info-item">
+                        <span class="info-icon">📍</span>
+                        <span class="info-text">서울 강남구 테헤란로 123</span>
+                    </div>
+                    <div class="place-info-item">
+                        <span class="info-icon">⏰</span>
+                        <span class="info-text">매일 17:00 - 22:00</span>
+                    </div>
+                    <div class="place-info-item">
+                        <span class="info-icon">🗓️</span>
+                        <span class="info-text">매주 월요일 휴무</span>
+                    </div>
+                    <div class="place-info-item">
+                        <span class="info-icon">🅿️</span>
+                        <span class="info-text">주차 가능 (발렛)</span>
+                    </div>
+                </div>
+
+                <div class="tag-row">
+                    <span class="tag">#조용한</span>
+                    <span class="tag">#프리미엄</span>
+                    <span class="tag">#데이트</span>
+                    <span class="tag">#바좌석</span>
+                    <span class="tag">#테이블</span>
+                    <span class="tag">#혼밥가능</span>
+                    <span class="tag">#모임</span>
+                </div>
+
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- 리뷰 숏폼 -->
+            <section class="shortform-section">
+                <h2 class="section-title">리뷰 숏폼</h2>
+                <p class="section-description">
+                    방문자 리뷰를 영상으로 확인해보세요.
+                </p>
+
+                <div class="shortform-row">
+                    <div class="short-thumb"></div>
+                    <div class="short-thumb"></div>
+                    <div class="short-thumb"></div>
+                </div>
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- =========================
+         Fixed Action Bar
+    ========================== -->
+    <footer class="fixed-action-bar">
+
+        <div class="action-buttons-group">
+            <a href="13_shadow_map.html" class="btn-icon-text">
+                <span class="icon-wrapper">🗺️</span>
+                <span class="button-text">지도</span>
+            </a>
+
+            <button class="btn-icon-text"
+                    onclick="alert('오늘 일정에 추가되었습니다.')">
+                <span class="icon-wrapper">🤍</span>
+                <span class="button-text">담기</span>
+            </button>
+        </div>
+
+        <a href="19_booking_dummy.html" class="btn-primary btn-cta">
+            예약하기
+        </a>
+
+    </footer>
+
+</div>
+
+</body>
+</html>

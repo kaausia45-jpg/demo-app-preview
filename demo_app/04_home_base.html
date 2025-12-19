@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 요청사항 반영: 카테고리 홈 패널 배경 스타일 추가 */
+        #home-category.home-panel {
+            background: linear-gradient(#f6f6f6, #ededed);
+        }
+
+        /* 영상 로딩 실패 시 fallback 이미지 추가 */
+        .short-video {
+            background: url('assets/images/short_dummy_1.jpg') center / cover no-repeat;
+        }
+
+        /* [요청사항 반영] 숏폼 UI 가독성 향상을 위한 스타일 추가 */
+        .short-form-item {
+            position: relative; /* ::after 가상 요소의 기준점 */
+        }
+        .short-video::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.35) 0%,
+            rgba(0,0,0,0.15) 40%,
+            rgba(0,0,0,0.55) 100%
+          );
+          pointer-events: none;
+          z-index: 1; /* .short-overlay UI가 위로 올라오도록 z-index 설정 */
+        }
+
+        /* [요청사항 반영] AI 오버레이 예시 안내 문구 스타일 추가 */
+        .ai-examples-guide {
+            text-align: center;
+            font-size: 13px;
+            color: #ccc;
+            margin-top: 24px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container" id="swipe-container">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <img src="assets/images/icon_menu.svg" class="icon" alt="Menu">
+            <img src="assets/images/icon_search.svg" class="icon" alt="Search">
+            <a href="20_mypage.html"><img src="assets/images/profile_thumbnail.png" class="profile-thumb" alt="Profile"></a>
+        </header>
+
+        <!-- Home Navigation -->
+        <nav class="home-nav">
+            <a href="#" class="home-nav-link" data-target="home-category">카테고리</a>
+            <a href="#" class="home-nav-link active" data-target="home-shorts">추천</a>
+            <a href="#" class="home-nav-link" data-target="home-schedule">일정</a>
+        </nav>
+
+        <!-- Main Content (3-Way Home Frame) -->
+        <main class="main-content home-swipe-container">
+            <div class="home-swipe-wrapper">
+                <!-- Home 2: Category (Placeholder for [07]) -->
+                <section class="home-panel" id="home-category">
+                    <div class="category-preview">
+                        <div class="category-card">🍽 오늘 저녁 추천</div>
+                        <div class="category-card">☕ 인기 카페</div>
+                        <div class="category-card">🍷 분위기 좋은 바</div>
+                        <div class="category-card">✈️ 주말 여행</div>
+                        <div class="category-card">📸 인생샷 포토존</div>
+                        <div class="category-card">🌿 힐링되는 자연</div>
+                    </div>
+                </section>
+
+                <!-- Home 1: Shorts Feed ([05]) -->
+                <section class="home-panel active" id="home-shorts">
+                    <div class="short-form-item">
+                        <video src="assets/videos/short_form_1.mp4" poster="assets/images/short_dummy_1.jpg" autoplay muted loop playsinline class="short-video"></video>
+                        <div class="short-overlay">
+                            <div class="short-info">
+                                <p>강남 · 오마카세 · 1인 8만 원대</p>
+                                <a href="12_place_detail.html" class="btn-secondary">장소 보기</a>
+                            </div>
+                            <div class="short-actions">
+                                <img src="assets/images/icon_heart.svg" class="icon" alt="Like">
+                                <img src="assets/images/icon_comment.svg" class="icon" alt="Comment">
+                                <img src="assets/images/icon_share.svg" class="icon" alt="Share">
+                                <img src="assets/images/icon_bookmark.svg" class="icon" alt="Save">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="short-form-item">
+                        <video src="assets/videos/short_form_2.mp4" poster="assets/images/short_dummy_2.jpg" autoplay muted loop playsinline class="short-video"></video>
+                        <div class="short-overlay">
+                            <div class="short-info">
+                                <p>홍대 · 루프탑 · 칵테일</p>
+                                <a href="12_place_detail.html" class="btn-secondary">장소 보기</a>
+                            </div>
+                            <div class="short-actions">
+                                <img src="assets/images/icon_heart.svg" class="icon" alt="Like">
+                                <img src="assets/images/icon_comment.svg" class="icon" alt="Comment">
+                                <img src="assets/images/icon_share.svg" class="icon" alt="Share">
+                                <img src="assets/images/icon_bookmark.svg" class="icon" alt="Save">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Home 3: Schedule/Follow (Placeholder for [15]) -->
+                <section class="home-panel" id="home-schedule">
+                    <div class="placeholder-content">
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Bottom Bar -->
+        <footer class="bottom-bar">
+            <a href="17_follow_feed.html"><img src="assets/images/icon_feed.svg" class="icon" alt="Feed"></a>
+            <img src="assets/images/c_logo.png" class="icon-c-logo logo-rotate-slow" id="ai-button" alt="AI Button">
+            <a href="13_shadow_map.html"><img src="assets/images/icon_map.svg" class="icon" alt="Map"></a>
+        </footer>
+    </div>
+    
+    <!-- AI Overlay (Hidden by default) -->
+    <div id="ai-overlay" class="ai-overlay hidden">
+        <div class="ai-overlay-content">
+            <p>어디 갈지, 뭐 할지 편하게 말해보세요.</p>
+            <div class="ai-input-box">
+                <img src="assets/images/icon_mic.svg" class="icon">
+                <input type="text" placeholder="예: 오늘 7시 강남 친구 셋이서 고기 먹을 곳 찾아줘">
+                <img src="assets/images/icon_send.svg" class="icon">
+            </div>
+            <p class="ai-examples-guide">예시를 눌러보세요</p>
+            <div class="ai-examples">
+                <a href="11_recommend_list.html" class="ai-example-btn">오늘 7시에 강남 오마카세 갈 거야</a>
+                <a href="14_trip_summary.html" class="ai-example-btn">홍콩 2박3일 일정 잡아줘</a>
+            </div>
+             <button id="close-ai-overlay" class="btn-close">X</button>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>
